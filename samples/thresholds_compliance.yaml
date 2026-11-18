@@ -1,0 +1,3 @@
+# Gate para reportes de doc-compliance-local (overall_pct + critical_gaps).
+overall: 0.85
+critical_ok: 1.0

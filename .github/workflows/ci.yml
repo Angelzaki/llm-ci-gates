@@ -37,6 +37,20 @@ jobs:
           fi
           echo "El gate bloqueó la regresión como se esperaba (exit 2)"
 
+      - name: Gate compliance ES ok (PASS)
+        run: python -m llm_ci_gates --metrics samples/compliance_ok.json --thresholds samples/thresholds_compliance.yaml
+
+      - name: Gate compliance ES gap (exit 2)
+        run: |
+          set +e
+          python -m llm_ci_gates --metrics samples/compliance_fail.json --thresholds samples/thresholds_compliance.yaml
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then
+            echo "Se esperaba exit 2 y se obtuvo $code"
+            exit 1
+          fi
+
   docker:
     runs-on: ubuntu-latest
     steps:

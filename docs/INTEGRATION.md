@@ -61,3 +61,28 @@ suite.abstention: 0.75
 ```
 
 Una suite que no aparece en las métricas pero sí en los umbrales falla el gate. Ver [CONCLUSIONS.md](CONCLUSIONS.md) antes de bajar cualquier mínimo.
+
+## Integración con doc-compliance-local
+
+[`doc-compliance-local`](https://github.com/Angelzaki/doc-compliance-local) escribe `results/compliance_report.json` con `overall_pct`, `critical_gaps` y `requirements[]`.
+
+`llm-ci-gates` lo aplana así:
+
+| Campo origen | Clave del gate |
+|---|---|
+| `overall_pct` | `overall` (= pct/100) |
+| `critical_gaps` vacío | `critical_ok` = 1.0 |
+| `critical_gaps` con ítems | `critical_ok` = 0.0 |
+| `requirements[].score` | `req.<ID>` (p.ej. `req.ES-02`) |
+
+```bash
+# En doc-compliance-local
+python -m doc_compliance check --es --out results
+
+# Gate (PASS si score alto y sin brechas críticas)
+python -m llm_ci_gates \
+  --metrics ../doc-compliance-local/results/compliance_report.json \
+  --thresholds samples/thresholds_compliance.yaml
+```
+
+Muestras versionadas: `samples/compliance_ok.json` (100%, Cumple) y `samples/compliance_fail.json` (~8.8%, 6 críticas).

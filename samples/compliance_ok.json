@@ -1,0 +1,725 @@
+{
+  "label": "",
+  "created_at": "2026-11-18T02:35:29+00:00",
+  "checklist": {
+    "name": "Línea base de seguridad (ES)",
+    "version": "1.0"
+  },
+  "documents": [
+    "gobierno.txt",
+    "operaciones_seguridad.txt",
+    "politica_accesos.txt",
+    "proteccion_datos.txt"
+  ],
+  "overall_pct": 100.0,
+  "verdict": "compliant",
+  "counts": {
+    "pass": 12,
+    "partial": 0,
+    "fail": 0
+  },
+  "critical_gaps": [],
+  "requirements": [
+    {
+      "id": "ES-01",
+      "title": "Mínimo privilegio y revisión periódica de accesos",
+      "category": "Accesos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "politica_accesos.txt",
+          "start": 534,
+          "end": 630,
+          "quote": "Cada jefatura ejecuta una revisión de accesos trimestral sobre los permisos de sus aplicaciones.",
+          "matched_keywords": [
+            "trimestral|trimestralmente"
+          ],
+          "matched_must_have": [
+            "revision de accesos|recertificacion de accesos"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "politica_accesos.txt:534-630"
+        },
+        {
+          "doc": "politica_accesos.txt",
+          "start": 113,
+          "end": 266,
+          "quote": "El control de acceso de Andes Soluciones se rige por el principio de mínimo privilegio: cada colaborador recibe solo los permisos que su puesto necesita.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "minimo privilegio|menor privilegio"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "politica_accesos.txt:113-266"
+        },
+        {
+          "doc": "politica_accesos.txt",
+          "start": 267,
+          "end": 420,
+          "quote": "Los permisos se otorgan mediante perfiles de acceso basados en roles, con control de acceso basado en roles (RBAC) definido en el proveedor de identidad.",
+          "matched_keywords": [
+            "control de acceso basado en roles|rbac",
+            "perfil de acceso|perfiles de acceso"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "politica_accesos.txt:267-420"
+        }
+      ]
+    },
+    {
+      "id": "ES-02",
+      "title": "Autenticación multifactor",
+      "category": "Accesos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "politica_accesos.txt",
+          "start": 835,
+          "end": 953,
+          "quote": "Se exige autenticación multifactor para todo acceso remoto, para el acceso administrativo y para las consolas de nube.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "autenticacion multifactor|mfa|doble factor|segundo factor",
+            "acceso remoto|acceso administrativo|consola de nube|consolas de nube"
+          ],
+          "negated": false,
+          "score": 4.0,
+          "citation": "politica_accesos.txt:835-953"
+        },
+        {
+          "doc": "politica_accesos.txt",
+          "start": 954,
+          "end": 1092,
+          "quote": "El personal usa una aplicación autenticadora o una llave de seguridad; los códigos por SMS se aceptan solo como alternativa de emergencia.",
+          "matched_keywords": [
+            "aplicacion autenticadora|autenticador",
+            "token de hardware|llave de seguridad|totp"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "politica_accesos.txt:954-1092"
+        },
+        {
+          "doc": "politica_accesos.txt",
+          "start": 1093,
+          "end": 1179,
+          "quote": "El inicio de sesión único (SSO) es la entrada por defecto a las aplicaciones internas.",
+          "matched_keywords": [
+            "inicio de sesion unico|sso"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "politica_accesos.txt:1093-1179"
+        }
+      ]
+    },
+    {
+      "id": "ES-03",
+      "title": "Política de contraseñas",
+      "category": "Accesos",
+      "critical": false,
+      "weight": 2.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "politica_accesos.txt",
+          "start": 1196,
+          "end": 1304,
+          "quote": "Las contraseñas exigen una longitud mínima de 14 caracteres y se comparan contra listas de claves filtradas.",
+          "matched_keywords": [
+            "contrasena|contrasenas"
+          ],
+          "matched_must_have": [
+            "longitud minima|al menos 12 caracteres|12 caracteres"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "politica_accesos.txt:1196-1304"
+        },
+        {
+          "doc": "politica_accesos.txt",
+          "start": 1305,
+          "end": 1417,
+          "quote": "Se bloquea la reutilización de las últimas 12 contraseñas y la cuenta entra en bloqueo tras 5 intentos fallidos.",
+          "matched_keywords": [
+            "contrasena|contrasenas",
+            "reutilizacion",
+            "bloqueo de cuenta|bloqueo"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 3.0,
+          "citation": "politica_accesos.txt:1305-1417"
+        },
+        {
+          "doc": "politica_accesos.txt",
+          "start": 1475,
+          "end": 1536,
+          "quote": "Cada colaborador recibe un gestor de contraseñas corporativo.",
+          "matched_keywords": [
+            "contrasena|contrasenas",
+            "gestor de contrasenas"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "politica_accesos.txt:1475-1536"
+        }
+      ]
+    },
+    {
+      "id": "ES-04",
+      "title": "Cifrado en tránsito",
+      "category": "Protección de datos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "proteccion_datos.txt",
+          "start": 104,
+          "end": 190,
+          "quote": "Todos los datos de clientes viajan con cifrado en tránsito mediante TLS 1.2 o TLS 1.3.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "tls 1.2|tls 1.3",
+            "cifrado en transito|cifrada en transito|cifrados en transito"
+          ],
+          "negated": false,
+          "score": 4.0,
+          "citation": "proteccion_datos.txt:104-190"
+        },
+        {
+          "doc": "proteccion_datos.txt",
+          "start": 84,
+          "end": 103,
+          "quote": "Cifrado en tránsito",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "cifrado en transito|cifrada en transito|cifrados en transito"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "proteccion_datos.txt:84-103"
+        },
+        {
+          "doc": "proteccion_datos.txt",
+          "start": 191,
+          "end": 277,
+          "quote": "Los sitios públicos usan HTTPS con certificados emitidos por una autoridad reconocida.",
+          "matched_keywords": [
+            "https",
+            "certificado|certificados"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "proteccion_datos.txt:191-277"
+        }
+      ]
+    },
+    {
+      "id": "ES-05",
+      "title": "Cifrado en reposo y gestión de claves",
+      "category": "Protección de datos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "proteccion_datos.txt",
+          "start": 363,
+          "end": 447,
+          "quote": "Los datos almacenados usan cifrado en reposo con AES-256 en bases de datos y discos.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "aes-256",
+            "cifrado en reposo|cifrada en reposo|cifrados en reposo"
+          ],
+          "negated": false,
+          "score": 4.0,
+          "citation": "proteccion_datos.txt:363-447"
+        },
+        {
+          "doc": "proteccion_datos.txt",
+          "start": 345,
+          "end": 362,
+          "quote": "Cifrado en reposo",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "cifrado en reposo|cifrada en reposo|cifrados en reposo"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "proteccion_datos.txt:345-362"
+        },
+        {
+          "doc": "proteccion_datos.txt",
+          "start": 448,
+          "end": 523,
+          "quote": "La gestión de claves se realiza en un KMS y la rotación de claves es anual.",
+          "matched_keywords": [
+            "gestion de claves|kms",
+            "rotacion de claves"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "proteccion_datos.txt:448-523"
+        }
+      ]
+    },
+    {
+      "id": "ES-06",
+      "title": "Registro centralizado y monitoreo",
+      "category": "Operaciones",
+      "critical": false,
+      "weight": 2.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 177,
+          "end": 269,
+          "quote": "La retención de registros es de 12 meses y los registros de auditoría no pueden modificarse.",
+          "matched_keywords": [
+            "registros de auditoria|trazas de auditoria"
+          ],
+          "matched_must_have": [
+            "retencion de registros|retencion de logs"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "operaciones_seguridad.txt:177-269"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 118,
+          "end": 176,
+          "quote": "El registro centralizado de eventos se realiza en un SIEM.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "registro centralizado|centralizacion de registros|siem"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "operaciones_seguridad.txt:118-176"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 270,
+          "end": 345,
+          "quote": "El monitoreo corre 24x7 y las alertas críticas llegan al equipo de guardia.",
+          "matched_keywords": [
+            "alertas",
+            "monitoreo"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "operaciones_seguridad.txt:270-345"
+        }
+      ]
+    },
+    {
+      "id": "ES-07",
+      "title": "Plan de respuesta a incidentes",
+      "category": "Operaciones",
+      "critical": true,
+      "weight": 3.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 431,
+          "end": 527,
+          "quote": "El plan de respuesta a incidentes designa un responsable de incidentes y un equipo de respuesta.",
+          "matched_keywords": [
+            "responsable de incidentes|equipo de respuesta"
+          ],
+          "matched_must_have": [
+            "plan de respuesta a incidentes|plan de respuesta ante incidentes"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "operaciones_seguridad.txt:431-527"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 528,
+          "end": 611,
+          "quote": "Los incidentes con datos personales se notifican a la autoridad dentro de 72 horas.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "72 horas"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "operaciones_seguridad.txt:528-611"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 675,
+          "end": 752,
+          "quote": "Incluye simulacros de phishing y se reporta la tasa de finalización por área.",
+          "matched_keywords": [
+            "simulacro|ejercicio"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "gobierno.txt:675-752"
+        }
+      ]
+    },
+    {
+      "id": "ES-08",
+      "title": "Respaldos y recuperación ante desastres",
+      "category": "Operaciones",
+      "critical": true,
+      "weight": 2.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 982,
+          "end": 1065,
+          "quote": "El plan de recuperación ante desastres fija un RTO de 4 horas y un RPO de 24 horas.",
+          "matched_keywords": [
+            "recuperacion ante desastres|plan de recuperacion",
+            "rto|tiempo objetivo de recuperacion",
+            "rpo|punto objetivo de recuperacion"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 3.0,
+          "citation": "operaciones_seguridad.txt:982-1065"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 837,
+          "end": 903,
+          "quote": "Se ejecuta una copia de seguridad diaria de los sistemas críticos.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "copia de seguridad diaria|copias de seguridad diarias|respaldo diario|respaldos diarios"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "operaciones_seguridad.txt:837-903"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 904,
+          "end": 981,
+          "quote": "Cada trimestre se hace una prueba de restauración y se registra el resultado.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "prueba de restauracion|pruebas de restauracion"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "operaciones_seguridad.txt:904-981"
+        }
+      ]
+    },
+    {
+      "id": "ES-09",
+      "title": "Gestión de vulnerabilidades y parches",
+      "category": "Operaciones",
+      "critical": false,
+      "weight": 2.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 1189,
+          "end": 1276,
+          "quote": "Los parches críticos se aplican en un máximo de 7 días dentro de la gestión de parches.",
+          "matched_keywords": [
+            "gestion de parches|parchado"
+          ],
+          "matched_must_have": [
+            "parches criticos|vulnerabilidades criticas"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "operaciones_seguridad.txt:1189-1276"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 1277,
+          "end": 1362,
+          "quote": "La remediación se prioriza por CVSS y se contrata una prueba de penetración cada año.",
+          "matched_keywords": [
+            "prueba de penetracion|pentest",
+            "cvss",
+            "remediacion"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 3.0,
+          "citation": "operaciones_seguridad.txt:1277-1362"
+        },
+        {
+          "doc": "operaciones_seguridad.txt",
+          "start": 1134,
+          "end": 1188,
+          "quote": "Se ejecuta un escaneo de vulnerabilidades cada semana.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "escaneo de vulnerabilidades|analisis de vulnerabilidades"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "operaciones_seguridad.txt:1134-1188"
+        }
+      ]
+    },
+    {
+      "id": "ES-10",
+      "title": "Gestión de cambios",
+      "category": "Gobierno",
+      "critical": false,
+      "weight": 1.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "gobierno.txt",
+          "start": 186,
+          "end": 271,
+          "quote": "La revisión por pares y la aprobación de cambios están a cargo del comité de cambios.",
+          "matched_keywords": [
+            "revision por pares|revision de codigo"
+          ],
+          "matched_must_have": [
+            "aprobacion de cambios|cambios aprobados|comite de cambios"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "gobierno.txt:186-271"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 272,
+          "end": 352,
+          "quote": "Los cambios se validan en preproducción y cada uno incluye un plan de reversión.",
+          "matched_keywords": [
+            "preproduccion|ambiente de pruebas"
+          ],
+          "matched_must_have": [
+            "reversion|rollback"
+          ],
+          "negated": false,
+          "score": 3.0,
+          "citation": "gobierno.txt:272-352"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 102,
+          "end": 185,
+          "quote": "Todo cambio en producción requiere una solicitud de cambio registrada en un ticket.",
+          "matched_keywords": [
+            "solicitud de cambio",
+            "ticket"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "gobierno.txt:102-185"
+        }
+      ]
+    },
+    {
+      "id": "ES-11",
+      "title": "Riesgo de terceros y proveedores",
+      "category": "Gobierno",
+      "critical": false,
+      "weight": 2.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "gobierno.txt",
+          "start": 369,
+          "end": 448,
+          "quote": "Antes de contratar se realiza una evaluación de proveedores con revisión anual.",
+          "matched_keywords": [
+            "revision anual|anualmente",
+            "subencargado|proveedores"
+          ],
+          "matched_must_have": [
+            "evaluacion de proveedores|evaluacion de riesgos de terceros|evaluacion de terceros"
+          ],
+          "negated": false,
+          "score": 4.0,
+          "citation": "gobierno.txt:369-448"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 449,
+          "end": 554,
+          "quote": "Los proveedores que tratan datos firman un anexo de seguridad y se solicita su informe SOC 2 o ISO 27001.",
+          "matched_keywords": [
+            "soc 2|iso 27001",
+            "subencargado|proveedores"
+          ],
+          "matched_must_have": [
+            "acuerdo de tratamiento de datos|anexo de seguridad"
+          ],
+          "negated": false,
+          "score": 4.0,
+          "citation": "gobierno.txt:449-554"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 357,
+          "end": 368,
+          "quote": "Proveedores",
+          "matched_keywords": [
+            "subencargado|proveedores"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "gobierno.txt:357-368"
+        }
+      ]
+    },
+    {
+      "id": "ES-12",
+      "title": "Capacitación en seguridad",
+      "category": "Gobierno",
+      "critical": false,
+      "weight": 1.0,
+      "status": "pass",
+      "score": 1.0,
+      "keyword_coverage": 1.0,
+      "must_have_coverage": 1.0,
+      "missing_keywords": [],
+      "missing_must_have": [],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "gobierno.txt",
+          "start": 572,
+          "end": 674,
+          "quote": "La capacitación en seguridad es obligatoria en la inducción del personal nuevo y se repite anualmente.",
+          "matched_keywords": [
+            "anual|anualmente"
+          ],
+          "matched_must_have": [
+            "capacitacion en seguridad|concientizacion en seguridad",
+            "induccion|personal nuevo|nuevos ingresos"
+          ],
+          "negated": false,
+          "score": 5.0,
+          "citation": "gobierno.txt:572-674"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 675,
+          "end": 752,
+          "quote": "Incluye simulacros de phishing y se reporta la tasa de finalización por área.",
+          "matched_keywords": [
+            "phishing",
+            "simulacro|simulacros|simulacion",
+            "tasa de finalizacion|finalizacion"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 3.0,
+          "citation": "gobierno.txt:675-752"
+        },
+        {
+          "doc": "gobierno.txt",
+          "start": 369,
+          "end": 448,
+          "quote": "Antes de contratar se realiza una evaluación de proveedores con revisión anual.",
+          "matched_keywords": [
+            "anual|anualmente"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "gobierno.txt:369-448"
+        }
+      ]
+    }
+  ]
+}

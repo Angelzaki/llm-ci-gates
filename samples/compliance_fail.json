@@ -1,0 +1,458 @@
+{
+  "label": "",
+  "created_at": "2026-11-18T02:35:54+00:00",
+  "checklist": {
+    "name": "Línea base de seguridad (ES)",
+    "version": "1.0"
+  },
+  "documents": [
+    "notas_accesos.txt",
+    "notas_datos.txt",
+    "notas_operaciones.txt"
+  ],
+  "overall_pct": 8.78,
+  "verdict": "non_compliant",
+  "counts": {
+    "pass": 0,
+    "partial": 0,
+    "fail": 12
+  },
+  "critical_gaps": [
+    "ES-01",
+    "ES-02",
+    "ES-04",
+    "ES-05",
+    "ES-07",
+    "ES-08"
+  ],
+  "requirements": [
+    {
+      "id": "ES-01",
+      "title": "Mínimo privilegio y revisión periódica de accesos",
+      "category": "Accesos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "fail",
+      "score": 0.07,
+      "keyword_coverage": 0.2,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "control de acceso basado en roles|rbac",
+        "trimestral|trimestralmente",
+        "baja de usuarios|desvinculacion|offboarding",
+        "perfil de acceso|perfiles de acceso"
+      ],
+      "missing_must_have": [
+        "minimo privilegio|menor privilegio",
+        "revision de accesos|recertificacion de accesos"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_accesos.txt",
+          "start": 139,
+          "end": 229,
+          "quote": "Las cuentas privilegiadas se comparten dentro del equipo de infraestructura por comodidad.",
+          "matched_keywords": [
+            "cuentas privilegiadas"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_accesos.txt:139-229"
+        }
+      ]
+    },
+    {
+      "id": "ES-02",
+      "title": "Autenticación multifactor",
+      "category": "Accesos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "fail",
+      "score": 0.0,
+      "keyword_coverage": 0.0,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "aplicacion autenticadora|autenticador",
+        "token de hardware|llave de seguridad|totp",
+        "inicio de sesion unico|sso"
+      ],
+      "missing_must_have": [
+        "acceso remoto|acceso administrativo|consola de nube|consolas de nube"
+      ],
+      "negated_must_have": [
+        "autenticacion multifactor|mfa|doble factor|segundo factor"
+      ],
+      "evidence": [
+        {
+          "doc": "notas_accesos.txt",
+          "start": 230,
+          "end": 302,
+          "quote": "No exigimos autenticación multifactor para el personal, solo contraseña.",
+          "matched_keywords": [],
+          "matched_must_have": [],
+          "negated": true,
+          "score": 0.5,
+          "citation": "notas_accesos.txt:230-302"
+        }
+      ]
+    },
+    {
+      "id": "ES-03",
+      "title": "Política de contraseñas",
+      "category": "Accesos",
+      "critical": false,
+      "weight": 2.0,
+      "status": "fail",
+      "score": 0.07,
+      "keyword_coverage": 0.2,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "reutilizacion",
+        "caducidad|rotacion|vencimiento",
+        "gestor de contrasenas",
+        "bloqueo de cuenta|bloqueo"
+      ],
+      "missing_must_have": [
+        "longitud minima|al menos 12 caracteres|12 caracteres"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_accesos.txt",
+          "start": 230,
+          "end": 302,
+          "quote": "No exigimos autenticación multifactor para el personal, solo contraseña.",
+          "matched_keywords": [
+            "contrasena|contrasenas"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_accesos.txt:230-302"
+        },
+        {
+          "doc": "notas_accesos.txt",
+          "start": 303,
+          "end": 392,
+          "quote": "Las contraseñas deben tener al menos 8 caracteres y se cambian cuando alguien se acuerda.",
+          "matched_keywords": [
+            "contrasena|contrasenas"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_accesos.txt:303-392"
+        }
+      ]
+    },
+    {
+      "id": "ES-04",
+      "title": "Cifrado en tránsito",
+      "category": "Protección de datos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "fail",
+      "score": 0.2333,
+      "keyword_coverage": 0.6667,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "vpn"
+      ],
+      "missing_must_have": [
+        "tls 1.2|tls 1.3",
+        "cifrado en transito|cifrada en transito|cifrados en transito"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_datos.txt",
+          "start": 27,
+          "end": 58,
+          "quote": "El sitio web público usa HTTPS.",
+          "matched_keywords": [
+            "https"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_datos.txt:27-58"
+        },
+        {
+          "doc": "notas_datos.txt",
+          "start": 203,
+          "end": 249,
+          "quote": "Los certificados los renueva quien se acuerde.",
+          "matched_keywords": [
+            "certificado|certificados"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_datos.txt:203-249"
+        }
+      ]
+    },
+    {
+      "id": "ES-05",
+      "title": "Cifrado en reposo y gestión de claves",
+      "category": "Protección de datos",
+      "critical": true,
+      "weight": 3.0,
+      "status": "fail",
+      "score": 0.0,
+      "keyword_coverage": 0.0,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "gestion de claves|kms",
+        "cifrado de disco|cifrado de base de datos",
+        "rotacion de claves"
+      ],
+      "missing_must_have": [
+        "aes-256"
+      ],
+      "negated_must_have": [
+        "cifrado en reposo|cifrada en reposo|cifrados en reposo"
+      ],
+      "evidence": [
+        {
+          "doc": "notas_datos.txt",
+          "start": 126,
+          "end": 202,
+          "quote": "No aplicamos cifrado en reposo en las bases de datos, es un costo adicional.",
+          "matched_keywords": [],
+          "matched_must_have": [],
+          "negated": true,
+          "score": 0.5,
+          "citation": "notas_datos.txt:126-202"
+        }
+      ]
+    },
+    {
+      "id": "ES-06",
+      "title": "Registro centralizado y monitoreo",
+      "category": "Operaciones",
+      "critical": false,
+      "weight": 2.0,
+      "status": "fail",
+      "score": 0.175,
+      "keyword_coverage": 0.5,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "registros de auditoria|trazas de auditoria",
+        "sincronizacion horaria|ntp"
+      ],
+      "missing_must_have": [
+        "registro centralizado|centralizacion de registros|siem",
+        "retencion de registros|retencion de logs"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_operaciones.txt",
+          "start": 205,
+          "end": 270,
+          "quote": "El monitoreo lo hace quien esté de turno, con alertas al celular.",
+          "matched_keywords": [
+            "alertas",
+            "monitoreo"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 2.0,
+          "citation": "notas_operaciones.txt:205-270"
+        }
+      ]
+    },
+    {
+      "id": "ES-07",
+      "title": "Plan de respuesta a incidentes",
+      "category": "Operaciones",
+      "critical": true,
+      "weight": 3.0,
+      "status": "fail",
+      "score": 0.0,
+      "keyword_coverage": 0.0,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "responsable de incidentes|equipo de respuesta",
+        "revision posterior|lecciones aprendidas",
+        "simulacro|ejercicio",
+        "escalamiento|escalado"
+      ],
+      "missing_must_have": [
+        "72 horas"
+      ],
+      "negated_must_have": [
+        "plan de respuesta a incidentes|plan de respuesta ante incidentes"
+      ],
+      "evidence": [
+        {
+          "doc": "notas_datos.txt",
+          "start": 250,
+          "end": 335,
+          "quote": "No contamos con un plan de respuesta a incidentes; si pasa algo se avisa por el chat.",
+          "matched_keywords": [],
+          "matched_must_have": [],
+          "negated": true,
+          "score": 0.5,
+          "citation": "notas_datos.txt:250-335"
+        }
+      ]
+    },
+    {
+      "id": "ES-08",
+      "title": "Respaldos y recuperación ante desastres",
+      "category": "Operaciones",
+      "critical": true,
+      "weight": 2.0,
+      "status": "fail",
+      "score": 0.0,
+      "keyword_coverage": 0.0,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "recuperacion ante desastres|plan de recuperacion",
+        "rto|tiempo objetivo de recuperacion",
+        "rpo|punto objetivo de recuperacion",
+        "copia externa|copia inmutable|fuera del sitio"
+      ],
+      "missing_must_have": [
+        "copia de seguridad diaria|copias de seguridad diarias|respaldo diario|respaldos diarios",
+        "prueba de restauracion|pruebas de restauracion"
+      ],
+      "negated_must_have": [],
+      "evidence": []
+    },
+    {
+      "id": "ES-09",
+      "title": "Gestión de vulnerabilidades y parches",
+      "category": "Operaciones",
+      "critical": false,
+      "weight": 2.0,
+      "status": "fail",
+      "score": 0.325,
+      "keyword_coverage": 0.0,
+      "must_have_coverage": 0.5,
+      "missing_keywords": [
+        "gestion de parches|parchado",
+        "prueba de penetracion|pentest",
+        "cvss",
+        "remediacion"
+      ],
+      "missing_must_have": [
+        "parches criticos|vulnerabilidades criticas"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_operaciones.txt",
+          "start": 117,
+          "end": 204,
+          "quote": "Hacemos un escaneo de vulnerabilidades de vez en cuando, cuando sale una noticia grave.",
+          "matched_keywords": [],
+          "matched_must_have": [
+            "escaneo de vulnerabilidades|analisis de vulnerabilidades"
+          ],
+          "negated": false,
+          "score": 2.0,
+          "citation": "notas_operaciones.txt:117-204"
+        }
+      ]
+    },
+    {
+      "id": "ES-10",
+      "title": "Gestión de cambios",
+      "category": "Gobierno",
+      "critical": false,
+      "weight": 1.0,
+      "status": "fail",
+      "score": 0.0875,
+      "keyword_coverage": 0.25,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "revision por pares|revision de codigo",
+        "solicitud de cambio",
+        "preproduccion|ambiente de pruebas"
+      ],
+      "missing_must_have": [
+        "aprobacion de cambios|cambios aprobados|comite de cambios",
+        "reversion|rollback"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_operaciones.txt",
+          "start": 271,
+          "end": 339,
+          "quote": "Los cambios se piden por ticket y se suben al servidor directamente.",
+          "matched_keywords": [
+            "ticket"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_operaciones.txt:271-339"
+        }
+      ]
+    },
+    {
+      "id": "ES-11",
+      "title": "Riesgo de terceros y proveedores",
+      "category": "Gobierno",
+      "critical": false,
+      "weight": 2.0,
+      "status": "fail",
+      "score": 0.1167,
+      "keyword_coverage": 0.3333,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "soc 2|iso 27001",
+        "revision anual|anualmente"
+      ],
+      "missing_must_have": [
+        "evaluacion de proveedores|evaluacion de riesgos de terceros|evaluacion de terceros",
+        "acuerdo de tratamiento de datos|anexo de seguridad"
+      ],
+      "negated_must_have": [],
+      "evidence": [
+        {
+          "doc": "notas_operaciones.txt",
+          "start": 340,
+          "end": 417,
+          "quote": "Los proveedores nos mandan lo que necesitamos y no hay contrato de seguridad.",
+          "matched_keywords": [
+            "subencargado|proveedores"
+          ],
+          "matched_must_have": [],
+          "negated": false,
+          "score": 1.0,
+          "citation": "notas_operaciones.txt:340-417"
+        }
+      ]
+    },
+    {
+      "id": "ES-12",
+      "title": "Capacitación en seguridad",
+      "category": "Gobierno",
+      "critical": false,
+      "weight": 1.0,
+      "status": "fail",
+      "score": 0.0,
+      "keyword_coverage": 0.0,
+      "must_have_coverage": 0.0,
+      "missing_keywords": [
+        "anual|anualmente",
+        "phishing",
+        "simulacro|simulacros|simulacion",
+        "tasa de finalizacion|finalizacion"
+      ],
+      "missing_must_have": [
+        "capacitacion en seguridad|concientizacion en seguridad",
+        "induccion|personal nuevo|nuevos ingresos"
+      ],
+      "negated_must_have": [],
+      "evidence": []
+    }
+  ]
+}

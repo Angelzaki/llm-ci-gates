@@ -53,8 +53,22 @@ Se pasó `results/scenario_a.json` y `results/scenario_b.json` del repositorio `
 
 Ambos escenarios: `GATE PASS`, exit code `0`.
 
+## Caso 4 — `doc-compliance-local` (checklist ES)
+
+Umbrales: `samples/thresholds_compliance.yaml` (`overall ≥ 0.85`, `critical_ok = 1.0`).
+
+```bash
+python -m llm_ci_gates --metrics samples/compliance_ok.json --thresholds samples/thresholds_compliance.yaml
+python -m llm_ci_gates --metrics samples/compliance_fail.json --thresholds samples/thresholds_compliance.yaml
+```
+
+| Muestra | overall | critical_ok | Exit |
+|---|---:|---:|---|
+| `compliance_ok.json` (`docs_ok_es`) | 1.00 | 1.0 | 0 PASS |
+| `compliance_fail.json` (`docs_gap_es`) | 0.088 | 0.0 | 2 FAIL |
+
 ## Lectura de resultados
 
-- El formato `overall` + `suites[].score` es suficiente: los campos adicionales (`details`, `meta`) se ignoran.
-- El caso de fallo no depende de un solo check; falla en los cuatro, así que el reporte indica qué dimensiones regresaron, no solo que algo falló.
-- Los tests (`pytest`) cubren el par PASS/FAIL sobre los mismos archivos de muestra, y el CI verifica además el exit code real del CLI.
+- El aplanado acepta `overall`+`suites` (rag-eval) y `overall_pct`+`critical_gaps`+`requirements` (doc-compliance).
+- Una política con score “aceptable” pero brechas críticas sigue en FAIL por `critical_ok`.
+- Los tests y el CI cubren ambos contratos.
