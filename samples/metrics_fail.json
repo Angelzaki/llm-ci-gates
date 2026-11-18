@@ -1,0 +1,8 @@
+{
+  "overall": 0.55,
+  "suites": [
+    {"name": "retrieval", "score": 0.4},
+    {"name": "faithfulness", "score": 0.5},
+    {"name": "abstention", "score": 0.5}
+  ]
+}

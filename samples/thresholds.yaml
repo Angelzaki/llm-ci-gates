@@ -1,0 +1,4 @@
+overall: 0.80
+suite.retrieval: 0.70
+suite.faithfulness: 0.70
+suite.abstention: 0.70
