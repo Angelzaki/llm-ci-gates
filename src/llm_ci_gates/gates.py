@@ -66,6 +66,28 @@ def flatten_metrics(metrics: dict) -> dict:
             flat["suite.citation"] = float(nested["citation_hit"])
         if nested.get("recall@4") is not None and isinstance(nested["recall@4"], (int, float)):
             flat["suite.retrieval"] = float(nested["recall@4"])
+    # prompt-firewall batch_report.json
+    if "accuracy" in metrics and isinstance(metrics["accuracy"], (int, float)):
+        flat["overall"] = float(metrics["accuracy"])
+        flat["accuracy"] = float(metrics["accuracy"])
+    if "precision" in metrics and isinstance(metrics["precision"], (int, float)):
+        flat["precision"] = float(metrics["precision"])
+    if "recall" in metrics and isinstance(metrics["recall"], (int, float)):
+        flat["recall"] = float(metrics["recall"])
+    # support-copilot experiment report
+    if "passed" in metrics and "total" in metrics:
+        total = metrics["total"]
+        if isinstance(total, (int, float)) and total:
+            flat["overall"] = float(metrics["passed"]) / float(total)
+            flat["pass_rate"] = flat["overall"]
+    if "grounded_ok" in metrics and "grounded_total" in metrics:
+        gt = metrics["grounded_total"]
+        if isinstance(gt, (int, float)) and gt:
+            flat["suite.grounded"] = float(metrics["grounded_ok"]) / float(gt)
+    if "escalate_ok" in metrics and "escalate_total" in metrics:
+        et = metrics["escalate_total"]
+        if isinstance(et, (int, float)) and et:
+            flat["suite.escalate"] = float(metrics["escalate_ok"]) / float(et)
     for k, v in metrics.items():
         if isinstance(v, (int, float)) and k not in flat:
             flat[k] = float(v)

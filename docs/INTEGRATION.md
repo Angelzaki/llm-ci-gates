@@ -113,3 +113,13 @@ python -m llm_ci_gates --metrics results/eval_adversarial.json --thresholds ci/t
 ```
 
 El CI de `knowledge-ops-console` ejecuta ambos gates tras `eval --all`.
+
+## rag-eval-platform / support-copilot / prompt-firewall
+
+| Repo | Artefacto | Umbrales típicos |
+|---|---|---|
+| `rag-eval-platform` | `results/scenario_a.json` (`overall` + `suites`) | `ci/thresholds.yaml` |
+| `support-copilot-lab` | `results/experiment_report.json` (`passed`/`total` → overall) | `ci/thresholds.yaml` |
+| `prompt-firewall` | `results/batch_report.json` (`accuracy` → overall) | `ci/thresholds.yaml` + held-out |
+
+Los tres ya invocan `llm-ci-gates` en GitHub Actions.

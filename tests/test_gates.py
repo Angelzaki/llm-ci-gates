@@ -41,3 +41,26 @@ def test_knowledge_ops_eval_gate():
     assert ok["ok"] is True
     assert bad["ok"] is False
     assert any(c["metric"] == "overall" and c["ok"] for c in ok["checks"])
+
+
+def test_flatten_support_and_firewall():
+    from llm_ci_gates.gates import flatten_metrics
+
+    support = flatten_metrics(
+        {
+            "total": 28,
+            "passed": 28,
+            "grounded_ok": 16,
+            "grounded_total": 16,
+            "escalate_ok": 12,
+            "escalate_total": 12,
+        }
+    )
+    assert support["overall"] == 1.0
+    assert support["suite.grounded"] == 1.0
+    assert support["suite.escalate"] == 1.0
+
+    firewall = flatten_metrics({"accuracy": 0.95, "precision": 1.0, "recall": 0.9, "total": 34})
+    assert firewall["overall"] == 0.95
+    assert firewall["precision"] == 1.0
+
