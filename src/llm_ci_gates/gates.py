@@ -88,6 +88,14 @@ def flatten_metrics(metrics: dict) -> dict:
         et = metrics["escalate_total"]
         if isinstance(et, (int, float)) and et:
             flat["suite.escalate"] = float(metrics["escalate_ok"]) / float(et)
+    if "abstain_ok" in metrics and "abstain_total" in metrics:
+        at = metrics["abstain_total"]
+        if isinstance(at, (int, float)) and at:
+            flat["suite.abstain"] = float(metrics["abstain_ok"]) / float(at)
+    if "rbac_ok" in metrics and "rbac_total" in metrics:
+        rt = metrics["rbac_total"]
+        if isinstance(rt, (int, float)) and rt:
+            flat["suite.rbac"] = float(metrics["rbac_ok"]) / float(rt)
     for k, v in metrics.items():
         if isinstance(v, (int, float)) and k not in flat:
             flat[k] = float(v)
