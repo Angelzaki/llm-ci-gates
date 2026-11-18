@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -e .
+
+      - name: Tests
+        run: pytest -q
+
+      - name: Gate sobre métricas sanas (debe PASAR)
+        run: python -m llm_ci_gates --metrics samples/metrics.json --thresholds samples/thresholds.yaml
+
+      - name: Gate sobre métricas con regresión (debe devolver exit 2)
+        run: |
+          set +e
+          python -m llm_ci_gates --metrics samples/metrics_fail.json --thresholds samples/thresholds.yaml
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then
+            echo "Se esperaba exit 2 y se obtuvo $code"
+            exit 1
+          fi
+          echo "El gate bloqueó la regresión como se esperaba (exit 2)"
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: docker build -t llm-ci-gates .
+      - name: Gate en contenedor (PASS)
+        run: docker run --rm llm-ci-gates

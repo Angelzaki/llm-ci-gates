@@ -1,0 +1,13 @@
+services:
+  gate-pass:
+    build: .
+    command: ["--metrics", "samples/metrics.json", "--thresholds", "samples/thresholds.yaml"]
+
+  gate-fail:
+    build: .
+    command: ["--metrics", "samples/metrics_fail.json", "--thresholds", "samples/thresholds.yaml"]
+
+  tests:
+    build: .
+    entrypoint: ["python", "-m", "pytest", "-q"]
+    command: []
