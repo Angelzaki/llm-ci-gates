@@ -86,3 +86,30 @@ python -m llm_ci_gates \
 ```
 
 Muestras versionadas: `samples/compliance_ok.json` (100%, Cumple) y `samples/compliance_fail.json` (~8.8%, 6 críticas).
+
+El CI de `doc-compliance-local` ya corre este gate tras `check --es` (PASS) y `check --es --gap` (exit 2).
+
+## Integración con knowledge-ops-console
+
+[`knowledge-ops-console`](https://github.com/Angelzaki/knowledge-ops-console) escribe `results/eval.json` con:
+
+```json
+{ "metrics": { "pass_rate": 1.0, "recall@4": 1.0, "citation_hit": 1.0, "abstention_correct": 1.0 } }
+```
+
+Aplanado:
+
+| Origen | Clave gate |
+|---|---|
+| `metrics.pass_rate` | `overall` |
+| `metrics.recall@4` | `suite.retrieval` |
+| `metrics.citation_hit` | `suite.citation` |
+| `metrics.abstention_correct` | `suite.abstention` |
+
+```bash
+python -m knowledge_ops eval --all
+python -m llm_ci_gates --metrics results/eval.json --thresholds ci/thresholds_knops.yaml
+python -m llm_ci_gates --metrics results/eval_adversarial.json --thresholds ci/thresholds_adversarial.yaml
+```
+
+El CI de `knowledge-ops-console` ejecuta ambos gates tras `eval --all`.

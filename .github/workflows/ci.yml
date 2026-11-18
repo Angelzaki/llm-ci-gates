@@ -51,6 +51,20 @@ jobs:
             exit 1
           fi
 
+      - name: Gate knowledge-ops ok (PASS)
+        run: python -m llm_ci_gates --metrics samples/knops_eval_ok.json --thresholds samples/thresholds_knops.yaml
+
+      - name: Gate knowledge-ops fail (exit 2)
+        run: |
+          set +e
+          python -m llm_ci_gates --metrics samples/knops_eval_fail.json --thresholds samples/thresholds_knops.yaml
+          code=$?
+          set -e
+          if [ "$code" -ne 2 ]; then
+            echo "Se esperaba exit 2 y se obtuvo $code"
+            exit 1
+          fi
+
   docker:
     runs-on: ubuntu-latest
     steps:

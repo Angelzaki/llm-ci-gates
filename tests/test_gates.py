@@ -32,3 +32,12 @@ def test_flatten_compliance_req_scores():
     assert flat["overall"] == 1.0
     assert flat["critical_ok"] == 1.0
     assert flat["req.ES-02"] == 1.0
+
+
+def test_knowledge_ops_eval_gate():
+    thr = ROOT / "samples" / "thresholds_knops.yaml"
+    ok = run_gate(ROOT / "samples" / "knops_eval_ok.json", thr)
+    bad = run_gate(ROOT / "samples" / "knops_eval_fail.json", thr)
+    assert ok["ok"] is True
+    assert bad["ok"] is False
+    assert any(c["metric"] == "overall" and c["ok"] for c in ok["checks"])

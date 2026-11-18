@@ -1,0 +1,278 @@
+{
+  "gold": "samples/gold/questions.jsonl",
+  "metrics": {
+    "cases": 13,
+    "answerable": 11,
+    "unanswerable": 2,
+    "k": 4,
+    "recall@4": 0.5,
+    "citation_hit": 0.5,
+    "keyword_score": 1.0,
+    "abstention_correct": 0.4,
+    "false_abstain_rate": 0.0,
+    "false_answer_rate": 0.0,
+    "pass_rate": 0.5
+  },
+  "cases": [
+    {
+      "id": "q01",
+      "question": "¿Cuántos días tiene un cliente para pedir el reembolso total?",
+      "expected_doc": "sop_reembolsos.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.7039,
+      "retrieved_docs": [
+        "sop_reembolsos.txt",
+        "sop_incidentes.txt"
+      ],
+      "cited_docs": [
+        "sop_reembolsos.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "El cliente tiene 15 días calendario desde la fecha de cobro para solicitar el reembolso total de su suscripción. Pasado ese plazo solo procede un reembolso parcial por servicio no prestado, con aprobación de Finanzas. [1]"
+    },
+    {
+      "id": "q02",
+      "question": "¿Quién aprueba un reembolso de S/ 3,000?",
+      "expected_doc": "sop_reembolsos.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.9033,
+      "retrieved_docs": [
+        "sop_reembolsos.txt",
+        "politica_vacaciones_remoto.txt"
+      ],
+      "cited_docs": [
+        "sop_reembolsos.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Los reembolsos de hasta S/ 500 los aprueba el analista de soporte nivel 2. Los reembolsos entre S/ 500 y S/ 5,000 requieren la aprobación del jefe de Operaciones. [1]"
+    },
+    {
+      "id": "q03",
+      "question": "¿Cuánto demora la acreditación del reembolso en tarjeta de crédito?",
+      "expected_doc": "sop_reembolsos.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.9147,
+      "retrieved_docs": [
+        "sop_reembolsos.txt"
+      ],
+      "cited_docs": [
+        "sop_reembolsos.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "La acreditación demora hasta 10 días hábiles para tarjeta de crédito y hasta 5 días hábiles para transferencia bancaria. [1]"
+    },
+    {
+      "id": "q04",
+      "question": "¿Cuál es la longitud mínima de una contraseña?",
+      "expected_doc": "politica_accesos.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.7311,
+      "retrieved_docs": [
+        "politica_accesos.txt"
+      ],
+      "cited_docs": [
+        "politica_accesos.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Las contraseñas deben tener un mínimo de 12 caracteres e incluir mayúsculas, minúsculas, números y un símbolo. Se cambian cada 90 días y no pueden repetir ninguna de las últimas 5 contraseñas. [1]"
+    },
+    {
+      "id": "q05",
+      "question": "¿Cuánto tiempo se bloquea la cuenta tras intentos fallidos de inicio de sesión?",
+      "expected_doc": "politica_accesos.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.8439,
+      "retrieved_docs": [
+        "politica_accesos.txt",
+        "sop_incidentes.txt",
+        "politica_vacaciones_remoto.txt"
+      ],
+      "cited_docs": [
+        "politica_accesos.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Después de 5 intentos fallidos de inicio de sesión la cuenta se bloquea durante 30 minutos. [1]"
+    },
+    {
+      "id": "q06",
+      "question": "¿En cuánto tiempo debe TI desactivar las cuentas de quien deja la empresa?",
+      "expected_doc": "politica_accesos.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.7133,
+      "retrieved_docs": [
+        "politica_accesos.txt",
+        "sop_incidentes.txt"
+      ],
+      "cited_docs": [
+        "politica_accesos.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Cuando una persona deja la empresa, Recursos Humanos notifica a TI el mismo día de la salida. TI desactiva todas las cuentas dentro de las 4 horas siguientes a la notificación y recupera el equipo asignado. [1]"
+    },
+    {
+      "id": "q07",
+      "question": "¿En cuánto tiempo se responde un incidente de severidad 1?",
+      "expected_doc": "sop_incidentes.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.551,
+      "retrieved_docs": [
+        "sop_incidentes.txt"
+      ],
+      "cited_docs": [
+        "sop_incidentes.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Para severidad 1 el equipo de guardia debe responder en 15 minutos y mantener actualizaciones cada 30 minutos. Para severidad 2 la respuesta es de 1 hora con actualizaciones cada 2 horas. [1]"
+    },
+    {
+      "id": "q08",
+      "question": "¿En qué plazo se debe hacer el postmortem de un incidente?",
+      "expected_doc": "sop_incidentes.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.6394,
+      "retrieved_docs": [
+        "sop_incidentes.txt",
+        "sop_reembolsos.txt"
+      ],
+      "cited_docs": [
+        "sop_incidentes.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Todo incidente de severidad 1 o 2 requiere un postmortem sin culpables en un plazo máximo de 5 días hábiles después de su cierre. [1]"
+    },
+    {
+      "id": "q09",
+      "question": "¿Cuántos días de trabajo remoto se permiten por semana?",
+      "expected_doc": "politica_vacaciones_remoto.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.7861,
+      "retrieved_docs": [
+        "politica_vacaciones_remoto.txt",
+        "politica_accesos.txt"
+      ],
+      "cited_docs": [
+        "politica_vacaciones_remoto.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "La modalidad híbrida permite trabajar de forma remota hasta 3 días por semana. Los martes y jueves son días presenciales para las reuniones de equipo. [1]"
+    },
+    {
+      "id": "q10",
+      "question": "¿Cuántos días de vacaciones corresponden por año de servicio?",
+      "expected_doc": "politica_vacaciones_remoto.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.8247,
+      "retrieved_docs": [
+        "politica_vacaciones_remoto.txt"
+      ],
+      "cited_docs": [
+        "politica_vacaciones_remoto.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "Cada colaborador a tiempo completo tiene derecho a 30 días calendario de vacaciones por cada año de servicio. Las vacaciones se programan con el jefe directo y se registran en el sistema de Recursos Humanos con al menos 30 días de anticipación. [1]"
+    },
+    {
+      "id": "q11",
+      "question": "¿Cuánto es el bono mensual de internet para trabajo remoto?",
+      "expected_doc": "politica_vacaciones_remoto.txt",
+      "should_abstain": false,
+      "abstained": false,
+      "confidence": 0.997,
+      "retrieved_docs": [
+        "politica_vacaciones_remoto.txt",
+        "sop_reembolsos.txt"
+      ],
+      "cited_docs": [
+        "politica_vacaciones_remoto.txt"
+      ],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "La empresa entrega una laptop y un monitor para el trabajo remoto. Se reembolsa un bono mensual de S/ 80 por concepto de internet para quienes trabajan al menos 8 días remotos al mes, previa presentación del recibo. [1]"
+    },
+    {
+      "id": "q12",
+      "question": "¿Cuál es el precio actual del bitcoin en dólares?",
+      "expected_doc": null,
+      "should_abstain": true,
+      "abstained": true,
+      "confidence": 0.0,
+      "retrieved_docs": [],
+      "cited_docs": [],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "No hay evidencia suficiente en los documentos indexados. Escale a una persona."
+    },
+    {
+      "id": "q13",
+      "question": "¿Quién ganó el mundial de fútbol de 2018?",
+      "expected_doc": null,
+      "should_abstain": true,
+      "abstained": true,
+      "confidence": 0.0,
+      "retrieved_docs": [],
+      "cited_docs": [],
+      "recall_hit": true,
+      "citation_hit": true,
+      "keyword_score": 1.0,
+      "abstention_ok": true,
+      "passed": true,
+      "answer": "No hay evidencia suficiente en los documentos indexados. Escale a una persona."
+    }
+  ]
+}

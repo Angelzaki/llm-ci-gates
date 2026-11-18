@@ -25,7 +25,7 @@ def evaluate(metrics: dict, thresholds: dict) -> dict:
 
 
 def flatten_metrics(metrics: dict) -> dict:
-    """Normaliza JSON de rag-eval, doc-compliance u otros a claves planas."""
+    """Normaliza JSON de rag-eval, doc-compliance, knowledge-ops u otros a claves planas."""
     flat: dict = {}
     if "overall" in metrics and isinstance(metrics["overall"], (int, float)):
         flat["overall"] = float(metrics["overall"])
@@ -50,6 +50,22 @@ def flatten_metrics(metrics: dict) -> dict:
         for s in metrics["suites"]:
             if isinstance(s, dict) and "name" in s and isinstance(s.get("score"), (int, float)):
                 flat[f"suite.{s['name']}"] = float(s["score"])
+    # knowledge-ops-console: { "metrics": { "pass_rate": 1.0, "recall@4": 1.0, ... } }
+    nested = metrics.get("metrics")
+    if isinstance(nested, dict):
+        for k, v in nested.items():
+            if isinstance(v, (int, float)):
+                key = str(k).replace("@", "_at_")
+                flat[key] = float(v)
+                flat[f"metric.{key}"] = float(v)
+        if "pass_rate" in nested and isinstance(nested["pass_rate"], (int, float)):
+            flat["overall"] = float(nested["pass_rate"])
+        if "abstention_correct" in nested and isinstance(nested["abstention_correct"], (int, float)):
+            flat["suite.abstention"] = float(nested["abstention_correct"])
+        if "citation_hit" in nested and isinstance(nested["citation_hit"], (int, float)):
+            flat["suite.citation"] = float(nested["citation_hit"])
+        if nested.get("recall@4") is not None and isinstance(nested["recall@4"], (int, float)):
+            flat["suite.retrieval"] = float(nested["recall@4"])
     for k, v in metrics.items():
         if isinstance(v, (int, float)) and k not in flat:
             flat[k] = float(v)
